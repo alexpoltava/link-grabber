@@ -1,0 +1,36 @@
+{
+  "name": "link-grabber",
+  "version": "0.0.1",
+  "description": "Grabs all links from html",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint && npm run unit",
+    "unit": "mocha test",
+    "lint": "eslint ."
+  },
+  "bin": {
+    "isvalueodd": "./bin/linkgrabber.js"
+  },
+  "author": "Alex Omelchenko",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^3.17.0",
+    "eslint-config-airbnb-base": "^11.1.1",
+    "eslint-plugin-import": "^2.2.0",
+    "mocha": "^3.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexpoltava/link-grabber.git"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cheerio": "^0.22.0",
+    "express": "^4.15.2",
+    "fs": "0.0.1-security",
+    "got": "^6.7.1",
+    "path": "^0.12.7",
+    "serve-favicon": "^2.4.1",
+    "serve-static": "^1.12.1"
+  }
+}
