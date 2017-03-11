@@ -9,6 +9,8 @@ const normalizeLinks = require('./lib/normalizeLinks');
 const writeResultsToFile = require('./lib/writeResultsToFile');
 const linksPage = require('./lib/links');
 
+const PORT = process.env.port || 3000;
+
 const app = express();
 
 app
@@ -20,17 +22,15 @@ app
           .then((response) => {
               const linksArray = normalizeLinks(response.url, extractLinks(response.body));
               const results = { linksArray, url: response.url };
-              writeResultsToFile(results)
+              return writeResultsToFile(results)
               .then((pathName) => {
                   console.log('Written successfully to ', pathName);
                   res.send(linksPage(Object.assign(results, { pathName })));
-              })
-              .catch(err => console.error(err));
+              });
           })
           .catch((error) => {
               console.error(error);
-              res.send(error);
+              res.status(500).send(error);
           });
     })
-    .listen(3000);
-console.log('Server is running on http://localhost:3000');
+    .listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
